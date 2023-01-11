@@ -1,0 +1,28 @@
+CREATE TABLE "category" (
+	"id"	INTEGER NOT NULL UNIQUE,
+	"category_title"	VARCHAR(20),
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+
+CREATE TABLE "posts" (
+	"id"	INTEGER NOT NULL,
+	"title"	VARCHAR(30),
+	"date_created"	VARCHAR(10),
+	"content"	VARCHAR(140),
+	"post_author_id"	INTEGER NOT NULL,
+	"post_category_id"	INTEGER,
+	FOREIGN KEY("post_category_id") REFERENCES "category"("id") ON DELETE SET NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
+	FOREIGN KEY("post_author_id") REFERENCES "users"("id") ON DELETE CASCADE
+);
+
+CREATE TABLE "users" (
+	"id"	INTEGER NOT NULL,
+	"first_name"	VARCHAR(20),
+	"last_name"	VARCHAR(20),
+	"gender"	VARCHAR(20),
+	"login"	VARCHAR(20),
+	"email"	VARCHAR(20),
+	"register_date"	VARCHAR(10),
+	PRIMARY KEY("id")
+);
