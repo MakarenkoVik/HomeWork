@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<p>Категории игр:</p>
+<hr>
+
+{% for category in categories %}
+
+<div>
+    <a href="{% url 'category_detail' slug=category.slug %}">{{ category.title }}</a>
+</div>
+
+{% endfor %}
+
+{% endblock content %}

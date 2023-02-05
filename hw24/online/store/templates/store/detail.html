@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>Название: {{game.name}}</h2>
+<img src="{{game.game_image.url}}" alt="{{game.name}}" width="350px" height="400px">
+<p>Дата выхода: {{game.release_date}}</p>
+<p>{{game.description| safe}}</p>
+<p>Стоимость: $ {{game.price}}</p>
+
+{% endblock content %}
