@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>Название: {{game.name}}</h2>
+<img src="{{game.game_image.url}}" alt="{{game.name}}" width="350px" height="400px">
+<p>Дата выхода: {{game.release_date}}</p>
+<p>{{game.description| safe}}</p>
+<p>Стоимость: $ {{game.price}}</p>
+
+<a href="{% url 'store:comment-add' slug=game.slug %}">Add comment</a>
+<hr>
+
+{% for comment in comments %}
+<p>{{ comment.text}} </p>
+<p>{{ comment.pub_date }}</p>
+<a href="{% url 'store:comment-update' comment.id %}">Update comment</a>
+<a href="{% url 'store:comment-delete' comment.id %}">Delete comment</a>
+<hr>
+{% endfor %}
+
+{% endblock content %}
