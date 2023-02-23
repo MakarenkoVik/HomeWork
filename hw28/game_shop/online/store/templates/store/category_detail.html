@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>Категория: {{category.title}}</h2>
+<p>{{category.description| safe}}</p>
+<hr>
+
+{% for game in games %}
+
+<div>
+    <a href="{% url 'store:game_detail' slug=game.slug %}">{{ game.name }}</a>
+    <p>Дата выхода {{game.release_date}}</p>
+    <p>$ {{ game.price }}</p>
+    <img width="250" height="300" src="{{ game.game_image.url }}" alt="{{ game.name }}">
+</div>
+<hr>
+
+{% endfor %}
+
+{% endblock content %}
