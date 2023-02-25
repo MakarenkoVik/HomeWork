@@ -1,0 +1,22 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<h2>Register</h2>
+
+{% if messages %}
+<div class="mgs-area">
+    <div class="mgs-item">
+    {% for val in messages.values %}
+    <span style="color: red;"> {{ val }} </span>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register">
+</form>
+
+{% endblock %}
