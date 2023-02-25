@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends "store/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h2>Название: {{game.name}}</h2>
+<img src="{{game.game_image.url}}" alt="{{game.name}}" width="350px" height="400px">
+<p>Дата выхода: {{game.release_date}}</p>
+<p>{{game.description| safe}}</p>
+<p>Стоимость: $ {{game.price}}</p>
+
+{% if last_visited %}
+	<p>Вы просматривали страницу: {{last_visited}}</p>
+{% endif %}
+{% if last_visited_times %}
+	<p>Вы просматривали страницу ранее всего: {{last_visited_times}} раз</p>
+{% endif %}
+
+
+{% if user and user.is_authenticated %}
+<a href="{% url 'store:comment-add' slug=game.slug %}">Add comment</a>
+{% endif %}
+<hr>
+
+{% for comment in comments %}
+    <p>{{ comment.text}} </p>
+    <p>{{ comment.pub_date }}</p>
+    {% if user == comment.user %}
+        <a href="{% url 'store:comment-update' comment.id %}">Update comment</a>
+        <a href="{% url 'store:comment-delete' comment.id %}">Delete comment</a>
+    {% endif %}
+    <hr>
+{% endfor %}
+
+{% endblock content %}
