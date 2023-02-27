@@ -1,0 +1,15 @@
+SELECT sum(Bytes) FROM tracks;
+***
+SELECT sum(result) FROM(
+SELECT count(EmployeeId) as result FROM employees
+UNION
+SELECT count(CustomerId)  as result FROM customers
+)
+***
+SELECT name FROM tracks WHERE AlbumId = (
+SELECT AlbumId FROM albums WHERE Title = 'A-Sides'
+)
+***
+SELECT AlbumId, sum(UnitPrice) as album_price
+FROM tracks
+GROUP by AlbumId
